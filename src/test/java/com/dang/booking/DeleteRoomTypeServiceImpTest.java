@@ -1,5 +1,6 @@
 package com.dang.booking;
 
+import com.dang.booking.exception.DeleteException;
 import com.dang.booking.model.RoomType;
 import com.dang.booking.repository.RoomRepository;
 import com.dang.booking.repository.RoomTypeRepository;
@@ -14,8 +15,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DeleteRoomTypeServiceImpTest {
@@ -41,6 +43,16 @@ public class DeleteRoomTypeServiceImpTest {
         roomTypeService.deleteRoomType(httpServletRequest, 1);
         verify(roomTypeRepository).existsById(1);
         verify(roomTypeRepository).deleteById(1);
+    }
+    @Test
+    public void testDeleteRoomType_RoomTypeNotFound(){
+        when(roomTypeRepository.existsById(1)).thenReturn(false);
+
+        DeleteException exception = assertThrows(DeleteException.class, ()->
+                roomTypeService.deleteRoomType(httpServletRequest, 1));
+        assertEquals("Không tìm thấy loại phòng với id: 1", exception.getMessage());
+        verify(roomTypeRepository).existsById(1);
+        verify(roomTypeRepository, never()).deleteById(1);
     }
 
 }

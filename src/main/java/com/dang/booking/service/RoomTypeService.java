@@ -62,7 +62,7 @@ public class RoomTypeService implements RoomTypeServiceImp {
     @Transactional
     public void deleteRoomType(HttpServletRequest request, int id) {
         if (!roomTypeRepository.existsById(id)){
-            throw new DeleteException("Không tìm thấy loại phòng" +id);
+            throw new DeleteException("Không tìm thấy loại phòng với id: " +id);
         }
         List<Room> rooms = roomRepository.findByRoomTypeId(id);
         for (Room room : rooms){
@@ -84,7 +84,7 @@ public class RoomTypeService implements RoomTypeServiceImp {
     public List<RoomTypeDto> getIdRoomType(HttpServletRequest request, int id) {
 
         if (!roomTypeRepository.existsById(id)){
-            throw new GetRoomTypeByIdException("Không tìm thấy loại phòng với id" + id);
+            throw new GetRoomTypeByIdException("Không tìm thấy loại phòng với id: " + id);
         }
         List<RoomType> roomTypes = roomTypeRepository.findRoomTypeById(id);
         List<RoomTypeDto> roomTypeDtos = new ArrayList<>();

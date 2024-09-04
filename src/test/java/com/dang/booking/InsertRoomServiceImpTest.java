@@ -56,6 +56,7 @@ public class InsertRoomServiceImpTest {
         hotel = new Hotel();
         hotel.setId(1);
 
+
         insertRoomRequest = new InsertRoomRequest();
         insertRoomRequest.setNumberRoom(123);
         insertRoomRequest.setDescription("hee");
