@@ -78,6 +78,7 @@ public class UpdateRoomServiceImpTest {
         assertEquals(updateRoomRequest.getPrice(), updatedRoom.getPrice());
         assertEquals(updateRoomRequest.getStatus(), updatedRoom.getStatus());
 
+
         verify(roomRepository).findById(anyInt());
         verify(roomTypeRepository).findById(anyInt());
         verify(hotelRepository).findById(anyInt());

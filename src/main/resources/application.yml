@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/bookingApp
     username: root
-    password: my-secret-pw
+    password: 1234
 
 
 
