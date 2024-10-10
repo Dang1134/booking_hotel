@@ -74,7 +74,7 @@ public class RoomTypeService implements RoomTypeServiceImp {
 
     @Override
     public RoomType updateRoomType(HttpServletRequest request, UpdateRoomTypeRequest updateRoomTypeRequest, int id) {
-        RoomType roomType = roomTypeRepository.findById(id).orElseThrow(()-> new UpdateRoomTypeException("Không tìm thấy loại phòng" +id));
+        RoomType roomType = roomTypeRepository.findById(id).orElseThrow(()-> new UpdateRoomTypeException("Không tìm thấy loại phòng với id: " +id));
         roomType.setName(updateRoomTypeRequest.getName());
         return roomTypeRepository.save(roomType);
     }
